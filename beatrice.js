@@ -3,7 +3,8 @@ const config = require('./config')
 const { clientToken, botChannel, clientId, guildId } = require('./config')
 const { Client, Intents } = require('discord.js')
 const myIntents = new Intents()
-myIntents.add(Intents.FLAGS.GUILD_MESSAGES, Intents.FLAGS.DIRECT_MESSAGES)
+
+myIntents.add(Intents.FLAGS.GUILDS)
 
 const client = new Client({ intents: myIntents })
 

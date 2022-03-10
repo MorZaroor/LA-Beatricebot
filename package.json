@@ -17,9 +17,6 @@
     "discord.js": "^13.6.0",
     "dotenv": "^16.0.0"
   },
-  "devDependencies": {
-    "eslint": "^8.10.0"
-  },
   "repository": {
     "type": "git",
     "url": "git+https://github.com/MorZaroor/LA-Beatricebot.git"
