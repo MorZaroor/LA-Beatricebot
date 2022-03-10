@@ -1,5 +1,6 @@
 require('dotenv').config()
 const config = require('./config')
+const { parseCalendar } = require('./calendar')
 const { Client, Intents } = require('discord.js')
 const myIntents = new Intents()
 myIntents.add(Intents.FLAGS.GUILD_MESSAGES, Intents.FLAGS.DIRECT_MESSAGES)
@@ -8,7 +9,7 @@ const client = new Client({ intents: myIntents })
 
 client.on('ready', () => {
   console.log(`Logged in as ${client.user.tag}!`)
-  NOTIFY_CHANNEL = client.channels.fetch(config['Bot_Channel'])
+  NOTIFY_CHANNEL = client.channels.fetch(config['BotChannel'])
 })
 
 client.on('message', async message => {
@@ -20,7 +21,11 @@ client.on('message', async message => {
   }
   else if (input === "!calendar")
   {
-    
+    await parseCalendar(message)
+  }
+  else if (input === "!clear")
+  {
+    message.guild.channels.cache.find(i => i.name === 'bot-test').bulkDelete(100, true)
   }
 }
 })
