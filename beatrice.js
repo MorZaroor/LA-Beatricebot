@@ -10,6 +10,11 @@ const client = new Client({ intents: myIntents })
 client.on('ready', () => {
   console.log(`Logged in as ${client.user.tag}!`)
   NOTIFY_CHANNEL = client.channels.fetch(config['BotChannel'])
+  setInterval(() => {
+    var cet = new Date().toLocaleString("en-US", { timeZone: "CET" })
+    let cet_obj = new Date(cet)
+    client.user.setActivity("Ingame time " + ("0" + cet_obj.getHours()).slice(-2) + ":" + ("0" + cet_obj.getMinutes()).slice(-2))
+  }, 40000)
 })
 
 client.on('message', async message => {
