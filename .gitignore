@@ -36,7 +36,7 @@ node_modules/
 .vscode-test
 
 # Idea
-.idea
+.idea/
 
 # Config files
 config.js
