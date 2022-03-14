@@ -41,7 +41,8 @@ const parseCalendar = async (message) => {
                 console.log(categoryEmbed)
                 if (typeof events[gearScore][eventID] !== 'undefined' && events[gearScore][eventID])
                 {
-                    categoryEmbed.addField(event_types.calendar_events[eventID][0], JSON.stringify(events[gearScore][eventID]), false)
+                    let event_time = JSON.stringify(events[gearScore][eventID]).slice(1, -1).replace(/['"]+/g, '')
+                    categoryEmbed.addField(event_types.calendar_events[eventID][0], event_time.replace(/\,/g,'\n'), false)
                 }
             })
         })
