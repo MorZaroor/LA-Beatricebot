@@ -35,5 +35,8 @@ node_modules/
 # Stores VSCode versions used for testing VSCode extensions
 .vscode-test
 
+# Idea
+.idea/
+
 # Config files
 config.js

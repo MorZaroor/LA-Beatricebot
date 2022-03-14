@@ -1,11 +1,26 @@
 require('dotenv').config()
 const config = require('./config')
+const { clientToken, botChannel, clientId, guildId } = require('./config')
 const { parseCalendar } = require('./calendar')
 const { Client, Intents } = require('discord.js')
 const myIntents = new Intents()
-myIntents.add(Intents.FLAGS.GUILD_MESSAGES, Intents.FLAGS.DIRECT_MESSAGES)
+
+myIntents.add(Intents.FLAGS.GUILDS)
 
 const client = new Client({ intents: myIntents })
+
+client.once('ready', () => {
+  console.log('Ready!')
+  // const channel = client.channels.cache.get(botChannel);
+})
+
+client.on('interactionCreate', async interaction => {
+  if (!interaction.isCommand()) return;
+
+  const { commandName } = interaction;
+
+  if (commandName === 'ping') {
+    await interaction.reply('Pong!');
 
 client.on('ready', () => {
   console.log(`Logged in as ${client.user.tag}!`)
@@ -32,7 +47,6 @@ client.on('message', async message => {
   {
     message.guild.channels.cache.find(i => i.name === 'bot-test').bulkDelete(100, true)
   }
-}
-})
+});
 
-client.login(config['ClientToken'])
+client.login(clientToken).then(() => console.log(`Logged in as ${client.user.tag}!`))
