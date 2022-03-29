@@ -17,6 +17,5 @@ module.exports = {
             let cet_obj = new Date(cet);
             client.user.setActivity('In-game time ' + ('0' + cet_obj.getHours()).slice(-2) + ':' + ('0' + cet_obj.getMinutes()).slice(-2))
         }, 40000);
-
     }
 }

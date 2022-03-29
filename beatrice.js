@@ -1,15 +1,17 @@
 require('dotenv').config();
 const { clientToken } = require('./config.js');
 const { parseCalendar } = require('./calendar.js');
-const { Client, Intents } = require('discord.js');
+const { Client, Collection, Intents } = require('discord.js');
 const myIntents = new Intents();
 
 myIntents.add(Intents.FLAGS.GUILD_MESSAGES, Intents.FLAGS.DIRECT_MESSAGES, Intents.FLAGS.GUILDS);
 
 const client = new Client({ intents: myIntents });
 
+client.commands = new Collection();
+
 require('./Handlers/Events.js')(client);
-// require('./Handlers/Commands.js')(client);
+require('./Handlers/Commands.js')(client);
 
 // client.once('ready', () => {
 //   console.log('Ready!');
@@ -20,16 +22,16 @@ require('./Handlers/Events.js')(client);
 //   }, 40000);
 // })
 
-client.on('interactionCreate', async interaction => {
-  if (!interaction.isCommand()) return;
-  console.log(`Received >>${interaction}<<.`);
-
-  const {commandName} = interaction;
-
-  if (commandName === 'ping') {
-    await interaction.reply('Pong! :3');
-  }
-})
+// client.on('interactionCreate', async interaction => {
+//   if (!interaction.isCommand()) return;
+//   console.log(`Received >>${interaction}<<.`);
+//
+//   const {commandName} = interaction;
+//
+//   if (commandName === 'ping') {
+//     await interaction.reply('Pong! :3');
+//   }
+// })
 
 client.on('messageCreate', async message => {
   {

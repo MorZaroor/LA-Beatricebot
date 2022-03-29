@@ -48,7 +48,7 @@ const parseCalendar = async (message) => {
             })
         })
         // return {embeds: [categoryEmbed]};
-        await message.guild.channels.cache.find(i => i.name === 'bot-test').send({ embeds: [categoryEmbed] });
+        // await message.guild.channels.cache.find(i => i.name === 'bot-test').send({ embeds: [categoryEmbed] });
     }
 }
 
